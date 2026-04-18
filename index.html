@@ -1127,24 +1127,28 @@
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
 
-    const waText = encodeURIComponent(
-      `Nouvelle réservation Yang Chauffeur\n\n` +
-      `Client : ${prenom} ${nom}\n` +
-      `Tél : ${tel}${email ? '\nEmail : ' + email : ''}\n` +
-      `Service : ${service}\n` +
-      `Date : ${dateFmt} à ${heure}\n` +
-      `Départ : ${depart}${arrivee ? '\nArrivée : ' + arrivee : ''}` +
-      `${message ? '\nInfos : ' + message : ''}`
-    );
+    // EMAIL
+const subject = encodeURIComponent("Nouvelle réservation Yang Chauffeur");
 
-    document.getElementById('formContent').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-    document.getElementById('successName').textContent = prenom;
+const body = encodeURIComponent(
+  `Nouvelle réservation Yang Chauffeur\n\n` +
+  `Client : ${prenom} ${nom}\n` +
+  `Tél : ${tel}${email ? '\nEmail : ' + email : ''}\n` +
+  `Service : ${service}\n` +
+  `Date : ${dateFmt} à ${heure}\n` +
+  `Départ : ${depart}${arrivee ? '\nArrivée : ' + arrivee : ''}` +
+  `${message ? '\nInfos : ' + message : ''}`
+);
 
-    setTimeout(() => {
-      window.open(`https://wa.me/33669029438?text=${waText}`, '_blank');
-    }, 800);
-  }
+// WHATSAPP (TON NUMÉRO)
+setTimeout(() => {
+  window.open(`https://wa.me/33753608361?text=${waText}`, '_blank');
+}, 500);
+
+// EMAIL (ouvre le client mail)
+setTimeout(() => {
+  window.location.href = `mailto:azmat.chwt@gmail.com?subject=${subject}&body=${body}`;
+}, 800);
 </script>
 </body>
 </html>
