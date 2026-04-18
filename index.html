@@ -75,7 +75,7 @@
   .mobile-menu a:hover { color: var(--gold); }
   .mobile-close {
     position: absolute; top: 1.5rem; right: 2rem;
-    font-size: 1.5rem; cursor: pointer; color: var(--text-muted);
+    font-size: 1.5rem; cursor: pointer;
     background: none; border: none; color: var(--gold);
   }
 
@@ -173,9 +173,7 @@
     display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
     max-width: 1200px; margin: 0 auto; align-items: center;
   }
-  .about-img {
-    position: relative;
-  }
+  .about-img { position: relative; }
   .about-img-frame {
     width: 100%; aspect-ratio: 3/4;
     position: relative; overflow: hidden;
@@ -247,10 +245,12 @@
     padding: 2.5rem 2rem;
     border: 1px solid var(--border);
     background: var(--near-black);
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.15s;
     position: relative; overflow: hidden;
+    cursor: pointer;
   }
-  .service-card:hover { background: rgba(201,169,110,0.04); }
+  .service-card:hover { background: rgba(201,169,110,0.06); }
+  .service-card:active { transform: scale(0.98); }
   .service-card::after {
     content: ''; position: absolute; bottom: 0; left: 2rem; right: 2rem;
     height: 1px; background: var(--gold);
@@ -258,9 +258,34 @@
     transition: transform 0.4s ease;
   }
   .service-card:hover::after { transform: scaleX(1); }
+  /* Badge "Sélectionné" sur la carte active */
+  .service-card.selected {
+    background: rgba(201,169,110,0.08);
+    border-color: rgba(201,169,110,0.5);
+  }
+  .service-card.selected::after { transform: scaleX(1); }
+  .service-selected-badge {
+    position: absolute; top: 0.8rem; right: 0.8rem;
+    font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--black); background: var(--gold);
+    padding: 0.25rem 0.6rem;
+    opacity: 0; transform: translateY(-4px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+  }
+  .service-card.selected .service-selected-badge {
+    opacity: 1; transform: translateY(0);
+  }
+  /* Hint "cliquer pour réserver" au hover */
+  .service-card-hint {
+    position: absolute; bottom: 0.7rem; right: 1rem;
+    font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover .service-card-hint { opacity: 0.7; }
   .service-icon {
     font-size: 1.4rem; margin-bottom: 1.2rem; display: block;
-    filter: grayscale(0.3);
   }
   .service-card h3 {
     font-family: 'Cormorant Garamond', serif;
@@ -273,44 +298,76 @@
   .service-flag {
     font-size: 0.85rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.4rem;
   }
+  .service-flag img { width: 20px; height: auto; border-radius: 2px; }
 
   /* FLEET */
   #fleet {
     padding: 4rem 3rem;
     max-width: 1200px; margin: 0 auto;
   }
-  .fleet-cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
-    margin-top: 4rem;
-  }
-  .fleet-card {
+  .fleet-main-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 1px;
+    background: var(--border);
     border: 1px solid var(--border);
-    overflow: hidden;
-    position: relative;
   }
-  .fleet-img {
-    width: 100%; aspect-ratio: 16/9;
-    background: var(--dark);
-    overflow: hidden;
+  .fleet-big-card {
+    position: relative; overflow: hidden;
+    min-height: 420px;
+    background: var(--near-black);
   }
-  .fleet-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-  .fleet-card:hover .fleet-img img { transform: scale(1.04); }
-  .fleet-info { padding: 1.5rem; }
-  .fleet-tag {
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 0.5rem; display: block;
+  .fleet-big-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 45%;
+    display: block;
+    transition: transform 0.6s ease;
   }
-  .fleet-info h3 {
+  .fleet-big-card:hover img { transform: scale(1.03); }
+  .fleet-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem 1.8rem 1.6rem;
+    background: linear-gradient(to top, rgba(5,5,5,0.96) 0%, rgba(5,5,5,0.72) 55%, transparent 100%);
+  }
+  .fleet-overlay .fleet-tag {
+    font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 0.4rem;
+  }
+  .fleet-overlay h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem; font-weight: 400; margin-bottom: 0.4rem;
+    font-size: 1.7rem; font-weight: 400; color: var(--text);
+    margin-bottom: 0.4rem;
   }
-  .fleet-info p { font-size: 0.8rem; color: var(--text-dim); }
-  .fleet-capacity {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.7rem; color: var(--text-muted);
-    margin-top: 1rem; padding-top: 1rem;
-    border-top: 1px solid var(--border-subtle);
-    width: 100%;
+  .fleet-overlay p {
+    font-size: 0.76rem; color: rgba(240,237,232,0.6);
+    line-height: 1.6; margin-bottom: 0.9rem;
+  }
+  .fleet-pills { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .fleet-pills span { font-size: 0.67rem; color: var(--text-muted); }
+  .fleet-side-col {
+    display: flex; flex-direction: column;
+    gap: 1px; background: var(--border);
+  }
+  .fleet-small-card {
+    position: relative; overflow: hidden;
+    flex: 1; min-height: 0; background: var(--near-black);
+  }
+  .fleet-small-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 60%;
+    display: block;
+    transition: transform 0.6s ease;
+    min-height: 200px;
+  }
+  .fleet-small-card:hover img { transform: scale(1.05); }
+  .fleet-small-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 0.8rem 1rem;
+    background: linear-gradient(to top, rgba(5,5,5,0.88), transparent);
+  }
+  .fleet-small-overlay span {
+    font-size: 0.57rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
   }
 
   /* AVIS */
@@ -340,6 +397,7 @@
     font-size: 0.75rem; font-weight: 400; letter-spacing: 0.1em;
     color: var(--text); text-transform: uppercase;
   }
+
   /* RESERVATION */
   #reservation { padding: 8rem 3rem; }
   .reservation-wrap {
@@ -397,6 +455,12 @@
   .form-group select { cursor: pointer; }
   .form-group select option { background: var(--dark); }
   .form-group textarea { resize: vertical; min-height: 90px; }
+  /* Flash highlight quand le formulaire est pré-rempli */
+  @keyframes fieldFlash {
+    0%   { border-color: var(--gold); background: rgba(201,169,110,0.12); }
+    100% { border-color: var(--border); background: var(--dark); }
+  }
+  .field-flash { animation: fieldFlash 1.2s ease forwards; }
   .form-notice {
     font-size: 0.72rem; color: var(--text-dim); line-height: 1.6;
     padding: 0.8rem; border-left: 2px solid var(--gold); margin-bottom: 1.2rem;
@@ -421,9 +485,7 @@
     transition: background 0.3s;
   }
   .btn-whatsapp:hover { background: rgba(37,211,102,0.08); }
-  .form-success {
-    display: none; text-align: center; padding: 2rem 0;
-  }
+  .form-success { display: none; text-align: center; padding: 2rem 0; }
   .form-success .success-icon { font-size: 2rem; margin-bottom: 1rem; }
   .form-success h3 {
     font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300;
@@ -454,9 +516,7 @@
     color: var(--gold); margin-bottom: 1.2rem;
   }
   .footer-col ul { list-style: none; }
-  .footer-col ul li {
-    font-size: 0.8rem; color: var(--text-dim); padding: 0.3rem 0; line-height: 1.5;
-  }
+  .footer-col ul li { font-size: 0.8rem; color: var(--text-dim); padding: 0.3rem 0; line-height: 1.5; }
   .footer-col ul li a { color: var(--text-dim); text-decoration: none; transition: color 0.3s; }
   .footer-col ul li a:hover { color: var(--gold); }
   .footer-bottom {
@@ -467,7 +527,7 @@
   }
   .footer-bottom a { color: var(--gold); text-decoration: none; }
 
-  /* FLOATING PHONE */
+  /* FLOATING BUTTONS */
   .float-phone {
     position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
     display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem;
@@ -492,89 +552,19 @@
   /* KEYFRAMES */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
   @keyframes pulse-dot {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
+    50%       { opacity: 0.5; transform: scale(0.8); }
   }
   @keyframes scrollPulse {
     0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-  }
-
-  /* FLEET GRID */
-  .fleet-main-grid {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .fleet-big-card {
-    position: relative; overflow: hidden;
-    min-height: 420px;
-    background: var(--near-black);
-  }
-  .fleet-big-card img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center 45%;
-    display: block;
-    transition: transform 0.6s ease;
-  }
-  .fleet-big-card:hover img { transform: scale(1.03); }
-  .fleet-overlay {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 2rem 1.8rem 1.6rem;
-    background: linear-gradient(to top, rgba(5,5,5,0.96) 0%, rgba(5,5,5,0.72) 55%, transparent 100%);
-  }
-  .fleet-overlay .fleet-tag {
-    font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); display: block; margin-bottom: 0.4rem;
-  }
-  .fleet-overlay h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.7rem; font-weight: 400; color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-  .fleet-overlay p {
-    font-size: 0.76rem; color: rgba(240,237,232,0.6);
-    line-height: 1.6; margin-bottom: 0.9rem;
-  }
-  .fleet-pills {
-    display: flex; gap: 0.8rem; flex-wrap: wrap;
-  }
-  .fleet-pills span {
-    font-size: 0.67rem; color: var(--text-muted);
-  }
-  .fleet-side-col {
-    display: flex; flex-direction: column;
-    gap: 1px; background: var(--border);
-  }
-  .fleet-small-card {
-    position: relative; overflow: hidden;
-    flex: 1; min-height: 0; background: var(--near-black);
-  }
-  .fleet-small-card img {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center 60%;
-    display: block;
-    transition: transform 0.6s ease;
-    min-height: 200px;
-  }
-  .fleet-small-card:hover img { transform: scale(1.05); }
-  .fleet-small-overlay {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 0.8rem 1rem;
-    background: linear-gradient(to top, rgba(5,5,5,0.88), transparent);
-  }
-  .fleet-small-overlay span {
-    font-size: 0.57rem; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--gold);
+    50%       { opacity: 1; }
   }
 
   /* RESPONSIVE */
@@ -582,71 +572,37 @@
     nav { padding: 1rem 1.5rem; }
     .nav-links, .nav-cta { display: none; }
     .hamburger { display: flex; }
-
-    /* About */
-    #about {
-      grid-template-columns: 1fr;
-      gap: 2.5rem; padding: 4rem 1.5rem;
-    }
+    #about { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
     .about-img { order: -1; }
-    .about-img-frame {
-      aspect-ratio: 16/9;
-    }
-    .about-img-frame img {
-      object-position: center 55%;
-    }
-    .about-img-frame::before,
-    .about-img-frame::after { display: none; }
-
-    /* Services */
+    .about-img-frame { aspect-ratio: 16/9; }
+    .about-img-frame img { object-position: center 55%; }
+    .about-img-frame::before, .about-img-frame::after { display: none; }
     .services-grid { grid-template-columns: 1fr 1fr; }
-
-    /* Fleet — empiler grande + petites en colonne */
-    .fleet-main-grid {
-      grid-template-columns: 1fr;
-    }
+    .fleet-main-grid { grid-template-columns: 1fr; }
     .fleet-big-card { min-height: 280px; }
     .fleet-big-card img { object-position: center 40%; }
-    .fleet-side-col {
-      flex-direction: row;
-    }
+    .fleet-side-col { flex-direction: row; }
     .fleet-small-card { flex: 1; }
     .fleet-small-card img { min-height: 160px; }
-
-    /* Avis, reservation, footer */
-    .avis-grid { grid-template-columns: 1fr; }
+    .avis-grid { grid-template-columns: 1fr 1fr; }
     .reservation-wrap { grid-template-columns: 1fr; gap: 3rem; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     #services, #fleet, #avis, #reservation, footer { padding: 4rem 1.5rem; }
   }
-
   @media (max-width: 600px) {
     h1 { font-size: 2.2rem; }
-
-    /* About */
     #about { padding: 3rem 1.2rem; }
     .about-img-frame { aspect-ratio: 4/3; }
     .about-img-frame img { object-position: center 60%; }
     .about-stats { flex-direction: column; gap: 1.5rem; }
-
-    /* Services */
     .services-grid { grid-template-columns: 1fr; }
-
-    /* Fleet — tout en colonne sur petit mobile */
     .fleet-side-col { flex-direction: column; }
     .fleet-small-card img { min-height: 180px; }
     .fleet-big-card { min-height: 240px; }
-
-    /* Forms */
     .form-row { grid-template-columns: 1fr; }
-
-    /* Footer */
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; text-align: center; }
-
-    /* Avis */
     .avis-grid { grid-template-columns: 1fr; }
-
     #services, #fleet, #avis, #reservation, footer { padding: 3rem 1.2rem; }
   }
 </style>
@@ -675,7 +631,7 @@
   <a href="#fleet" onclick="closeMenu()">Véhicules</a>
   <a href="#avis" onclick="closeMenu()">Avis clients</a>
   <a href="#reservation" onclick="closeMenu()">Réservation</a>
-  <a href="tel:0669029438" style="color: var(--gold);">06 69 02 94 38</a>
+  <a href="tel:0669029438" style="color:var(--gold);">06 69 02 94 38</a>
 </div>
 
 <!-- HERO -->
@@ -714,7 +670,7 @@
         <div class="stat-label">Disponibilité</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">5★</div>
+        <div class="stat-num">4.8★</div>
         <div class="stat-label">Note Google</div>
       </div>
       <div class="stat-item">
@@ -734,65 +690,109 @@
     <h2>Une gamme complète<br>de <em>services exclusifs</em></h2>
   </div>
   <div class="services-grid">
-    <div class="service-card">
+
+    <div class="service-card"
+         data-service="Transfert vers CDG (Van jusqu'à 7 pers.)"
+         data-message="Bonjour, je souhaite réserver un transfert aéroport CDG/Orly.">
+      <span class="service-selected-badge">Sélectionné ✓</span>
       <span class="service-icon">✈️</span>
       <h3>Transferts Aéroports</h3>
       <p>Paris ↔ CDG et Paris ↔ Orly. Accueil passager, suivi des vols en temps réel, jusqu'à 7 passagers en van.</p>
+      <span class="service-card-hint">Cliquer pour réserver →</span>
     </div>
-    <div class="service-card">
+
+    <div class="service-card"
+         data-service="Services entreprises"
+         data-message="Bonjour, je souhaite un service entreprise (mise à disposition / déplacements professionnels).">
+      <span class="service-selected-badge">Sélectionné ✓</span>
       <span class="service-icon">👔</span>
       <h3>Services aux Entreprises</h3>
       <p>Mise à disposition journée, transport de dirigeants, gestion de déplacements professionnels.</p>
+      <span class="service-card-hint">Cliquer pour réserver →</span>
     </div>
-    <div class="service-card">
+
+    <div class="service-card"
+         data-service="Mariage / Cérémonie"
+         data-message="Bonjour, je souhaite réserver pour un mariage ou un événement spécial.">
+      <span class="service-selected-badge">Sélectionné ✓</span>
       <span class="service-icon">💍</span>
       <h3>Mariages & Événements</h3>
       <p>Limousine, décoration sur mesure, ponctualité absolue pour vos jours les plus importants.</p>
+      <span class="service-card-hint">Cliquer pour réserver →</span>
     </div>
-    <div class="service-card">
+
+    <div class="service-card"
+         data-service="Transport d'enfants"
+         data-message="Bonjour, je souhaite un transport d'enfants avec sièges bébé/rehausseurs adaptés.">
+      <span class="service-selected-badge">Sélectionné ✓</span>
       <span class="service-icon">👨‍👩‍👧</span>
       <h3>Transport d'Enfants</h3>
       <p>Sièges bébé et rehausseurs fournis. Conduite douce, sécurité et bienveillance à toute épreuve.</p>
+      <span class="service-card-hint">Cliquer pour réserver →</span>
     </div>
-    <div class="service-card">
-      <div class="service-flag">🎤 
-      <img src="https://flagcdn.com/w20/br.png" alt="Brésil">
-      <img src="https://flagcdn.com/w20/pt.png" alt="Portugal">  
+
+    <div class="service-card"
+         data-service="Circuit guide lusophone"
+         data-message="Olá, gostaria de reservar um circuito personalizado com guia lusófono.">
+      <span class="service-selected-badge">Sélectionné ✓</span>
+      <div class="service-flag">🎤
+        <img src="https://flagcdn.com/w20/br.png" alt="Brésil">
+        <img src="https://flagcdn.com/w20/pt.png" alt="Portugal">
       </div>
       <h3>Circuit Guide Lusophone</h3>
       <p>Circuits sur mesure avec guide lusophone. Découvrez Paris et ses environs en portugais.</p>
+      <span class="service-card-hint">Cliquer pour réserver →</span>
     </div>
-    <div class="service-card">
-      <div class="service-flag">🎤 
-      <img src="https://flagcdn.com/w20/gb.png" alt="Royaume-Uni">
-      <img src="https://flagcdn.com/w20/us.png" alt="États-Unis"> 
+
+    <div class="service-card"
+         data-service="Circuit guide anglophone"
+         data-message="Hello, I would like to book a bespoke tour with an English-speaking guide.">
+      <span class="service-selected-badge">Sélectionné ✓</span>
+      <div class="service-flag">🎤
+        <img src="https://flagcdn.com/w20/gb.png" alt="Royaume-Uni">
+        <img src="https://flagcdn.com/w20/us.png" alt="États-Unis">
       </div>
       <h3>Circuit Guide Anglophone</h3>
       <p>Bespoke tours with English-speaking guide. Paris & surroundings in comfort and style.</p>
+      <span class="service-card-hint">Cliquer pour réserver →</span>
     </div>
-    <div class="service-card">
+
+    <div class="service-card"
+         data-service="Visite guidée / privée"
+         data-message="Bonjour, je souhaite organiser une visite privée et personnalisée de Paris.">
+      <span class="service-selected-badge">Sélectionné ✓</span>
       <span class="service-icon">🏙️</span>
       <h3>Visites Guidées & Privées</h3>
       <p>Explorez Paris ou les villes françaises à votre rythme, avec un programme entièrement personnalisé.</p>
+      <span class="service-card-hint">Cliquer pour réserver →</span>
     </div>
-    <div class="service-card">
+
+    <div class="service-card"
+         data-service="Événement spécial"
+         data-message="Bonjour, je souhaite un transport pour un événement spécial (soirée, gala, spectacle…).">
+      <span class="service-selected-badge">Sélectionné ✓</span>
       <span class="service-icon">🌟</span>
       <h3>Événements Spéciaux</h3>
       <p>Soirées, galas, spectacles. Transport élégant pour toutes vos occasions exceptionnelles.</p>
+      <span class="service-card-hint">Cliquer pour réserver →</span>
     </div>
-    <div class="service-card">
+
+    <div class="service-card"
+         data-service="Mise à disposition journée"
+         data-message="Bonjour, je souhaite un chauffeur à disposition à la demi-journée ou à la journée.">
+      <span class="service-selected-badge">Sélectionné ✓</span>
       <span class="service-icon">🗓️</span>
       <h3>Mise à Disposition</h3>
       <p>Chauffeur attitré à la demi-journée ou à la journée, selon vos besoins et votre emploi du temps.</p>
+      <span class="service-card-hint">Cliquer pour réserver →</span>
     </div>
+
   </div>
 </section>
 
 <!-- FLEET -->
 <section id="fleet">
   <div style="max-width:1200px; margin:0 auto;">
-
-    <!-- Header compact -->
     <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:1.5rem; padding:0 0 1.2rem; border-bottom:1px solid var(--border); flex-wrap:wrap; gap:1rem;">
       <div>
         <span style="font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.5rem;">Nos véhicules</span>
@@ -800,11 +800,7 @@
       </div>
       <a href="#reservation" class="btn-primary" style="white-space:nowrap; font-size:0.62rem; padding:0.7rem 1.4rem;">Réserver</a>
     </div>
-
-    <!-- Grille principale -->
     <div class="fleet-main-grid">
-
-      <!-- Grande carte : van_4 (paysage 16:9 natif) -->
       <div class="fleet-big-card">
         <img src="van_4.jpeg" alt="Mercedes Viano en mouvement quai de Seine Tour Eiffel">
         <div class="fleet-overlay">
@@ -818,24 +814,15 @@
           </div>
         </div>
       </div>
-
-      <!-- Colonne droite : van_1 + van_3 -->
       <div class="fleet-side-col">
-
         <div class="fleet-small-card">
           <img src="van_1.jpg" alt="Mercedes Viano Tour Eiffel automne">
-          <div class="fleet-small-overlay">
-            <span>Paris & monuments</span>
-          </div>
+          <div class="fleet-small-overlay"><span>Paris & monuments</span></div>
         </div>
-
         <div class="fleet-small-card">
-          <img src="van_3.jpeg" alt="Mercedes Viano profil Yang Chauffeur">
-          <div class="fleet-small-overlay">
-            <span>Silhouette & finitions AMG</span>
-          </div>
+          <img src="van_3.jpg" alt="Mercedes Viano profil Yang Chauffeur">
+          <div class="fleet-small-overlay"><span>Silhouette & finitions AMG</span></div>
         </div>
-
       </div>
     </div>
   </div>
@@ -880,7 +867,7 @@
       <p class="avis-text">Monsieur Yang a emmené notre fils tous les jours au collège suite à une fracture de la jambe. D'une extrême ponctualité et d'un sérieux sans faille. Discret et à l'écoute, je le recommande les yeux fermés.</p>
       <div class="avis-author">Fred G.</div>
     </div>
-    <div class="avis-card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background: rgba(201,169,110,0.04);">
+    <div class="avis-card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:rgba(201,169,110,0.04);">
       <div style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; color:var(--gold); margin-bottom:0.5rem;">4.8</div>
       <div class="stars" style="font-size:1rem; letter-spacing:0.2em;">★★★★★</div>
       <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.8rem; letter-spacing:0.1em; text-transform:uppercase;">Note Google</div>
@@ -895,7 +882,7 @@
     <div class="res-info">
       <span class="section-label">Contact & Réservation</span>
       <h2>Votre voyage,<br><em>planifié avec soin</em></h2>
-      <p>Remplissez le formulaire ou contactez-moi directement. Une confirmation écrite (SMS ou email avec tous les détails de votre course) vous sera envoyée dans les plus brefs délais.</p>
+      <p>Remplissez le formulaire ou contactez-moi directement. Une confirmation écrite (SMS ou email) vous sera envoyée dans les plus brefs délais.</p>
       <div class="contact-item">
         <div class="contact-icon">📞</div>
         <div>
@@ -928,7 +915,6 @@
     <div class="form-wrap">
       <h3 class="form-title">Demande de réservation</h3>
       <p class="form-sub">Confirmation écrite garantie sous 24h</p>
-
       <div id="formContent">
         <div class="form-row">
           <div class="form-group">
@@ -1000,7 +986,6 @@
           Réserver via WhatsApp
         </a>
       </div>
-
       <div class="form-success" id="formSuccess">
         <div class="success-icon">✨</div>
         <h3>Demande envoyée !</h3>
@@ -1062,6 +1047,7 @@
 </div>
 
 <script>
+  /* ── Navigation ── */
   function openMenu() {
     document.getElementById('mobileMenu').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1071,46 +1057,85 @@
     document.body.style.overflow = '';
   }
 
-  // Set min date to today
-  const today = new Date().toISOString().split('T')[0];
-  document.getElementById('date').min = today;
+  /* ── Date min = aujourd'hui ── */
+  document.getElementById('date').min = new Date().toISOString().split('T')[0];
 
+  /* ── Clic sur une carte service → pré-remplir formulaire ── */
+  let lastSelectedCard = null;
+
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const serviceValue = card.dataset.service;
+      const messageValue = card.dataset.message;
+
+      /* Retirer la sélection précédente */
+      if (lastSelectedCard) lastSelectedCard.classList.remove('selected');
+      card.classList.add('selected');
+      lastSelectedCard = card;
+
+      /* Pré-remplir le select */
+      const select = document.getElementById('service');
+      if (select && serviceValue) {
+        select.value = serviceValue;
+        flashField(select);
+      }
+
+      /* Pré-remplir le message uniquement si vide */
+      const textarea = document.getElementById('message');
+      if (textarea && messageValue && textarea.value.trim() === '') {
+        textarea.value = messageValue;
+        flashField(textarea);
+      }
+
+      /* Scroll vers le formulaire */
+      document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /* Animation flash sur un champ pré-rempli */
+  function flashField(el) {
+    el.classList.remove('field-flash');
+    void el.offsetWidth; /* reflow pour relancer l'animation */
+    el.classList.add('field-flash');
+    setTimeout(() => el.classList.remove('field-flash'), 1400);
+  }
+
+  /* ── Soumission formulaire → WhatsApp ── */
   function submitForm() {
-    const prenom = document.getElementById('prenom').value.trim();
-    const nom = document.getElementById('nom').value.trim();
-    const tel = document.getElementById('tel').value.trim();
+    const prenom  = document.getElementById('prenom').value.trim();
+    const nom     = document.getElementById('nom').value.trim();
+    const tel     = document.getElementById('tel').value.trim();
     const service = document.getElementById('service').value;
-    const date = document.getElementById('date').value;
-    const heure = document.getElementById('heure').value;
-    const depart = document.getElementById('depart').value.trim();
+    const date    = document.getElementById('date').value;
+    const heure   = document.getElementById('heure').value;
+    const depart  = document.getElementById('depart').value.trim();
 
     if (!prenom || !nom || !tel || !service || !date || !heure || !depart) {
       alert('Veuillez remplir tous les champs obligatoires (*).');
       return;
     }
 
-    // Build WhatsApp message as fallback confirmation
-    const email = document.getElementById('email').value.trim();
+    const email   = document.getElementById('email').value.trim();
     const arrivee = document.getElementById('arrivee').value.trim();
     const message = document.getElementById('message').value.trim();
-    const dateFormatted = new Date(date).toLocaleDateString('fr-FR', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+    const dateFmt = new Date(date).toLocaleDateString('fr-FR', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
 
     const waText = encodeURIComponent(
       `Nouvelle réservation Yang Chauffeur\n\n` +
       `Client : ${prenom} ${nom}\n` +
       `Tél : ${tel}${email ? '\nEmail : ' + email : ''}\n` +
       `Service : ${service}\n` +
-      `Date : ${dateFormatted} à ${heure}\n` +
+      `Date : ${dateFmt} à ${heure}\n` +
       `Départ : ${depart}${arrivee ? '\nArrivée : ' + arrivee : ''}` +
       `${message ? '\nInfos : ' + message : ''}`
     );
 
-    // Show success message
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
     document.getElementById('successName').textContent = prenom;
 
-    // Open WhatsApp with pre-filled message after short delay
     setTimeout(() => {
       window.open(`https://wa.me/33669029438?text=${waText}`, '_blank');
     }, 800);
