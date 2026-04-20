@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    emailjs.init('WYmm6MdNWyiBpeyCc');
+
     /* ── Navigation ── */
     function openMenu() {
         document.getElementById('mobileMenu').classList.add('open');
@@ -124,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
 }, 300);
 
     /* EmailJS */
-    emailjs.init('WYmm6MdNWyiBpeyCc');
 
     emailjs.send('service_rvx8dyh', 'template_rnkq2a6', {
     prenom:  prenom,
