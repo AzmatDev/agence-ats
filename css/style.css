@@ -609,6 +609,17 @@ footer {
     .avis-grid { grid-template-columns: 1fr; }
     #services, #fleet, #avis, #reservation, footer { padding: 3rem 1.2rem; }
 }
+
+.rgpd-check {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.rgpd-check a {
+    color: var(--gold);
+}
+
 /*Page mentions légales*/
 .legal-page {
     padding: 100px 20px;
