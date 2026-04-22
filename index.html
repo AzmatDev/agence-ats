@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yang Chauffeur — Chauffeur Privé de Luxe à Paris</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agence ATS — Chauffeur Privé VTC Essonne 91</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
+<canvas id="stars-canvas"></canvas>
+
 <!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">Yang <span>Chauffeur</span></a>
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">ATS <span>VTC</span></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#fleet">Véhicules</a></li>
+    <li><a href="#fleet">Véhicule</a></li>
     <li><a href="#avis">Avis</a></li>
-    <li><a href="#reservation">Contact</a></li>
+    <li><a href="#reservation">Réserver</a></li>
   </ul>
-  <a href="tel:0669029438" class="nav-cta">Réserver</a>
+  <a href="tel:+33XXXXXXXXX" class="nav-cta">Appeler</a>
   <div class="hamburger" onclick="openMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -29,54 +30,76 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">✕</button>
   <a href="#services" onclick="closeMenu()">Services</a>
-  <a href="#fleet" onclick="closeMenu()">Véhicules</a>
-  <a href="#avis" onclick="closeMenu()">Avis clients</a>
-  <a href="#reservation" onclick="closeMenu()">Réservation</a>
-  <a href="tel:0669029438" style="color:var(--gold);">06 69 02 94 38</a>
+  <a href="#fleet" onclick="closeMenu()">Véhicule</a>
+  <a href="#avis" onclick="closeMenu()">Avis</a>
+  <a href="#reservation" onclick="closeMenu()">Réserver</a>
+  <a href="tel:+33XXXXXXXXX" class="mobile-phone" onclick="closeMenu()">Appeler maintenant</a>
 </div>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <div class="dispo-badge"><span class="dispo-dot"></span>Disponible 7j/7 — Paris & Île-de-France</div>
-  <div class="hero-line"></div>
-  <p class="hero-eyebrow">Chauffeur Privé de Prestige</p>
-  <h1>L'élégance du<br><em>voyage sur mesure</em></h1>
-  <p class="hero-sub">Paris — CDG — Orly — Toute destination</p>
-  <div class="hero-ctas">
-    <a href="#reservation" class="btn-primary">Réserver une course</a>
-    <a href="tel:0669029438" class="btn-secondary">📞 06 69 02 94 38</a>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Disponible 24h/24 — 7j/7 — Essonne & Île-de-France
+    </div>
+    <div class="hero-line"></div>
+    <p class="hero-eyebrow">Chauffeur Privé VTC</p>
+    <h1>L'excellence du<br><em>voyage privé</em></h1>
+    <p class="hero-sub">Vigneux-sur-Seine · CDG · Orly · Beauvais · Toute destination</p>
+    <div class="hero-ctas">
+      <a href="#reservation" class="btn-primary">Réserver maintenant</a>
+      <a href="https://wa.me/33XXXXXXXXX" target="_blank" class="btn-whatsapp-hero">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Devis WhatsApp
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-num">5.0</span><span class="hstat-label">Note Google</span></div>
+      <div class="hstat-divider"></div>
+      <div class="hstat"><span class="hstat-num">24/7</span><span class="hstat-label">Disponible</span></div>
+      <div class="hstat-divider"></div>
+      <div class="hstat"><span class="hstat-num">7</span><span class="hstat-label">Places VIP</span></div>
+    </div>
   </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
-    Découvrir
+    <span>Découvrir</span>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-img">
-    <div class="about-img-frame">
-      <img src="images/van_2.jpeg" alt="Mercedes Viano Yang Chauffeur Paris Tour Eiffel">
+  <div class="about-inner">
+    <div class="about-img-col">
+      <div class="about-img-frame">
+        <img src="images/interior_1.jpg" alt="Intérieur luxueux van ATS VTC ciel étoilé">
+        <div class="about-img-badge">
+          <span>★★★★★</span>
+          <span>6 avis Google</span>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="about-text">
-    <span class="section-label">À propos</span>
-    <h2>Un service <em>humain</em>,<br>au-delà du transport</h2>
-    <p>Yang Chauffeur, c'est bien plus qu'un simple service de transport. C'est une promesse de ponctualité, de discrétion et d'attention portée à chaque passager — que vous soyez en déplacement professionnel, en famille, ou pour un événement exceptionnel.</p>
-    <p>Présent à Paris et en Île-de-France, je vous accompagne sur toutes vos courses, 7 jours sur 7, avec le souci constant de votre confort et de votre sérénité.</p>
-    <div class="about-stats">
-      <div class="stat-item">
-        <div class="stat-num">7j/7</div>
-        <div class="stat-label">Disponibilité</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">4.8★</div>
-        <div class="stat-label">Note Google</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">+10</div>
-        <div class="stat-label">Ans d'expérience</div>
+    <div class="about-text-col">
+      <span class="section-label">À propos d'ATS</span>
+      <h2>Votre agence de<br>chauffeurs privés <em>en Essonne</em></h2>
+      <p>Basée à Vigneux-sur-Seine, l'Agence ATS est votre partenaire de confiance pour tous vos déplacements en Essonne et en Île-de-France. Ponctualité, discrétion et confort premium sont au cœur de chaque trajet.</p>
+      <p>À bord de notre van VTC 7 places unique — équipé d'un ciel étoilé et d'un écran TV — chaque course devient une expérience à part entière.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Disponibilité</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5★</div>
+          <div class="stat-label">Note Google</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">91</div>
+          <div class="stat-label">Essonne</div>
+        </div>
       </div>
     </div>
   </div>
@@ -88,104 +111,80 @@
 <section id="services">
   <div class="section-header">
     <span class="section-label">Nos prestations</span>
-    <h2>Une gamme complète<br>de <em>services exclusifs</em></h2>
+    <h2>Des services <em>sur mesure</em><br>pour chaque occasion</h2>
   </div>
   <div class="services-grid">
 
-    <div class="service-card"
-         data-service="Transfert vers CDG (Van jusqu'à 7 pers.)"
-         data-message="Bonjour, je souhaite réserver un transfert aéroport CDG/Orly.">
+    <div class="service-card" data-service="Transfert aéroport (CDG / Orly / Beauvais)" data-message="Bonjour, je souhaite réserver un transfert aéroport (CDG / Orly / Beauvais).">
       <span class="service-selected-badge">Sélectionné ✓</span>
-      <span class="service-icon">✈️</span>
+      <div class="service-icon-wrap">✈️</div>
       <h3>Transferts Aéroports</h3>
-      <p>Paris ↔ CDG et Paris ↔ Orly. Accueil passager, suivi des vols en temps réel, jusqu'à 7 passagers en van.</p>
-      <span class="service-card-hint">Cliquer pour réserver →</span>
+      <p>CDG, Orly, Beauvais. Accueil personnalisé, suivi vol en temps réel, prise en charge à l'arrivée.</p>
+      <span class="service-card-hint">Réserver →</span>
     </div>
 
-    <div class="service-card"
-         data-service="Services entreprises"
-         data-message="Bonjour, je souhaite un service entreprise (mise à disposition / déplacements professionnels).">
+    <div class="service-card" data-service="Transfert gare (TGV / RER / Eurostar)" data-message="Bonjour, je souhaite réserver un transfert gare (TGV, RER ou Eurostar).">
       <span class="service-selected-badge">Sélectionné ✓</span>
-      <span class="service-icon">👔</span>
-      <h3>Services aux Entreprises</h3>
-      <p>Mise à disposition journée, transport de dirigeants, gestion de déplacements professionnels.</p>
-      <span class="service-card-hint">Cliquer pour réserver →</span>
+      <div class="service-icon-wrap">🚄</div>
+      <h3>Transferts Gares</h3>
+      <p>TGV, RER, Eurostar. Dépose et récupération directement devant votre quai, sans stress.</p>
+      <span class="service-card-hint">Réserver →</span>
     </div>
 
-    <div class="service-card"
-         data-service="Mariage / Cérémonie"
-         data-message="Bonjour, je souhaite réserver pour un mariage ou un événement spécial.">
+    <div class="service-card" data-service="Mariage / Cérémonie" data-message="Bonjour, je souhaite réserver pour un mariage ou une cérémonie.">
       <span class="service-selected-badge">Sélectionné ✓</span>
-      <span class="service-icon">💍</span>
-      <h3>Mariages & Événements</h3>
-      <p>Limousine, décoration sur mesure, ponctualité absolue pour vos jours les plus importants.</p>
-      <span class="service-card-hint">Cliquer pour réserver →</span>
+      <div class="service-icon-wrap">💍</div>
+      <h3>Mariages & Cérémonies</h3>
+      <p>Un véhicule d'exception pour vos moments inoubliables. Décoration sur mesure disponible.</p>
+      <span class="service-card-hint">Réserver →</span>
     </div>
 
-    <div class="service-card"
-         data-service="Transport d'enfants"
-         data-message="Bonjour, je souhaite un transport d'enfants avec sièges bébé/rehausseurs adaptés.">
+    <div class="service-card" data-service="Séminaire / Événement entreprise" data-message="Bonjour, je souhaite réserver pour un séminaire ou un événement d'entreprise.">
       <span class="service-selected-badge">Sélectionné ✓</span>
-      <span class="service-icon">👨‍👩‍👧</span>
-      <h3>Transport d'Enfants</h3>
-      <p>Sièges bébé et rehausseurs fournis. Conduite douce, sécurité et bienveillance à toute épreuve.</p>
-      <span class="service-card-hint">Cliquer pour réserver →</span>
+      <div class="service-icon-wrap">👔</div>
+      <h3>Séminaires & Entreprises</h3>
+      <p>Transport de dirigeants, navettes d'entreprise, séminaires. Discrétion et ponctualité garanties.</p>
+      <span class="service-card-hint">Réserver →</span>
     </div>
 
-    <div class="service-card"
-         data-service="Circuit guide lusophone"
-         data-message="Olá, gostaria de reservar um circuito personalizado com guia lusófono.">
+    <div class="service-card" data-service="Soirée / Événement privé" data-message="Bonjour, je souhaite réserver pour une soirée ou un événement privé.">
       <span class="service-selected-badge">Sélectionné ✓</span>
-      <div class="service-flag">🎤
-        <img src="https://flagcdn.com/w20/br.png" alt="Brésil">
-        <img src="https://flagcdn.com/w20/pt.png" alt="Portugal">
-      </div>
-      <h3>Circuit Guide Lusophone</h3>
-      <p>Circuits sur mesure avec guide lusophone. Découvrez Paris et ses environs en portugais.</p>
-      <span class="service-card-hint">Cliquer pour réserver →</span>
+      <div class="service-icon-wrap">🌟</div>
+      <h3>Soirées & Événements</h3>
+      <p>Galas, soirées privées, concerts. Profitez de la nuit sans contrainte avec un chauffeur dédié.</p>
+      <span class="service-card-hint">Réserver →</span>
     </div>
 
-    <div class="service-card"
-         data-service="Circuit guide anglophone"
-         data-message="Hello, I would like to book a bespoke tour with an English-speaking guide.">
+    <div class="service-card" data-service="Mise à disposition avec chauffeur" data-message="Bonjour, je souhaite une mise à disposition avec chauffeur (demi-journée ou journée).">
       <span class="service-selected-badge">Sélectionné ✓</span>
-      <div class="service-flag">🎤
-        <img src="https://flagcdn.com/w20/gb.png" alt="Royaume-Uni">
-        <img src="https://flagcdn.com/w20/us.png" alt="États-Unis">
-      </div>
-      <h3>Circuit Guide Anglophone</h3>
-      <p>Bespoke tours with English-speaking guide. Paris & surroundings in comfort and style.</p>
-      <span class="service-card-hint">Cliquer pour réserver →</span>
-    </div>
-
-    <div class="service-card"
-         data-service="Visite guidée / privée"
-         data-message="Bonjour, je souhaite organiser une visite privée et personnalisée de Paris.">
-      <span class="service-selected-badge">Sélectionné ✓</span>
-      <span class="service-icon">🏙️</span>
-      <h3>Visites Guidées & Privées</h3>
-      <p>Explorez Paris ou les villes françaises à votre rythme, avec un programme entièrement personnalisé.</p>
-      <span class="service-card-hint">Cliquer pour réserver →</span>
-    </div>
-
-    <div class="service-card"
-         data-service="Événement spécial"
-         data-message="Bonjour, je souhaite un transport pour un événement spécial (soirée, gala, spectacle…).">
-      <span class="service-selected-badge">Sélectionné ✓</span>
-      <span class="service-icon">🌟</span>
-      <h3>Événements Spéciaux</h3>
-      <p>Soirées, galas, spectacles. Transport élégant pour toutes vos occasions exceptionnelles.</p>
-      <span class="service-card-hint">Cliquer pour réserver →</span>
-    </div>
-
-    <div class="service-card"
-         data-service="Mise à disposition journée"
-         data-message="Bonjour, je souhaite un chauffeur à disposition à la demi-journée ou à la journée.">
-      <span class="service-selected-badge">Sélectionné ✓</span>
-      <span class="service-icon">🗓️</span>
+      <div class="service-icon-wrap">🗓️</div>
       <h3>Mise à Disposition</h3>
-      <p>Chauffeur attitré à la demi-journée ou à la journée, selon vos besoins et votre emploi du temps.</p>
-      <span class="service-card-hint">Cliquer pour réserver →</span>
+      <p>Chauffeur attitré à l'heure, à la demi-journée ou à la journée complète selon vos besoins.</p>
+      <span class="service-card-hint">Réserver →</span>
+    </div>
+
+    <div class="service-card" data-service="Navette groupe (jusqu'à 7 personnes)" data-message="Bonjour, je souhaite réserver une navette groupe (jusqu'à 7 personnes).">
+      <span class="service-selected-badge">Sélectionné ✓</span>
+      <div class="service-icon-wrap">👥</div>
+      <h3>Navette Groupe</h3>
+      <p>Jusqu'à 7 passagers dans notre van premium. Idéal pour les sorties en groupe ou les familles.</p>
+      <span class="service-card-hint">Réserver →</span>
+    </div>
+
+    <div class="service-card" data-service="Trajet longue distance" data-message="Bonjour, je souhaite réserver un trajet longue distance.">
+      <span class="service-selected-badge">Sélectionné ✓</span>
+      <div class="service-icon-wrap">🗺️</div>
+      <h3>Longue Distance</h3>
+      <p>Toutes destinations en France. Confort optimal pour les longs trajets avec chauffeur professionnel.</p>
+      <span class="service-card-hint">Réserver →</span>
+    </div>
+
+    <div class="service-card" data-service="Trajet professionnel ou personnel" data-message="Bonjour, je souhaite réserver un trajet (professionnel ou personnel).">
+      <span class="service-selected-badge">Sélectionné ✓</span>
+      <div class="service-icon-wrap">📍</div>
+      <h3>Trajets sur Mesure</h3>
+      <p>Professionnel ou personnel, de jour comme de nuit. Devis gratuit et immédiat sur WhatsApp.</p>
+      <span class="service-card-hint">Réserver →</span>
     </div>
 
   </div>
@@ -193,36 +192,36 @@
 
 <!-- FLEET -->
 <section id="fleet">
-  <div style="max-width:1200px; margin:0 auto;">
-    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:1.5rem; padding:0 0 1.2rem; border-bottom:1px solid var(--border); flex-wrap:wrap; gap:1rem;">
+  <div class="fleet-inner">
+    <div class="fleet-header">
       <div>
-        <span style="font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.5rem;">Nos véhicules</span>
-        <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,3vw,2.4rem); font-weight:300; line-height:1.15;">Une flotte <em style="font-style:italic;color:var(--gold);">premium</em></h2>
+        <span class="section-label">Notre véhicule</span>
+        <h2>Une expérience <em>hors du commun</em></h2>
       </div>
-      <a href="#reservation" class="btn-primary" style="white-space:nowrap; font-size:0.62rem; padding:0.7rem 1.4rem;">Réserver</a>
+      <a href="#reservation" class="btn-primary">Réserver</a>
     </div>
-    <div class="fleet-main-grid">
-      <div class="fleet-big-card">
-        <img src="images/van_4.jpeg" alt="Mercedes Viano en mouvement quai de Seine Tour Eiffel">
-        <div class="fleet-overlay">
-          <span class="fleet-tag">Van de prestige</span>
-          <h3>Mercedes Viano</h3>
-          <p>Intérieur cuir · Vitres teintées · Clim indépendante</p>
+    <div class="fleet-grid">
+      <div class="fleet-main">
+        <img src="images/van_exterior.jpg" alt="Van VTC ATS extérieur">
+        <div class="fleet-main-overlay">
+          <span class="fleet-tag">Van Premium 7 places</span>
+          <h3>Mercedes-Benz V-Class</h3>
+          <p>Ciel étoilé · Écran TV · Cuir noir · Clim indépendante</p>
           <div class="fleet-pills">
-            <span>👥 Jusqu'à 7 passagers</span>
-            <span>✈️ CDG & Orly</span>
-            <span>🧳 Grand volume</span>
+            <span>👥 7 passagers</span>
+            <span>✈️ CDG · Orly · Beauvais</span>
+            <span>🧳 Grand coffre</span>
           </div>
         </div>
       </div>
-      <div class="fleet-side-col">
-        <div class="fleet-small-card">
-          <img src="images/van_1.jpg" alt="Mercedes Viano Tour Eiffel automne">
-          <div class="fleet-small-overlay"><span>Paris & monuments</span></div>
+      <div class="fleet-side">
+        <div class="fleet-thumb">
+          <img src="images/interior_stars.jpg" alt="Ciel étoilé intérieur van ATS">
+          <div class="fleet-thumb-label"><span>Ciel étoilé & ambiance violet</span></div>
         </div>
-        <div class="fleet-small-card">
-          <img src="images/van_3.jpeg" alt="Mercedes Viano profil Yang Chauffeur">
-          <div class="fleet-small-overlay"><span>Silhouette & finitions AMG</span></div>
+        <div class="fleet-thumb">
+          <img src="images/interior_tv.jpg" alt="Écran TV intérieur van ATS">
+          <div class="fleet-thumb-label"><span>Écran TV & sièges cuir</span></div>
         </div>
       </div>
     </div>
@@ -238,42 +237,56 @@
     <h2>Ce que disent<br><em>nos clients</em></h2>
   </div>
   <div class="avis-grid">
+
     <div class="avis-card">
       <div class="avis-quote">"</div>
       <div class="stars">★★★★★</div>
-      <p class="avis-text">Notre chauffeur était très sympathique et respectueux. Sa conduite était douce, c'est rassurant avec plusieurs enfants en bas âge. Il nous a bien installé deux sièges bébé plus un rehausseur.</p>
-      <div class="avis-author">Amelia A.</div>
+      <p class="avis-text">Excellente prestation, j'ai eu plusieurs fois besoin de ces services. Une personne ponctuelle, respectueuse, véhicule toujours propre, conduite agréable. Je le recommande à toute personne qui a besoin d'un chauffeur privé !</p>
+      <div class="avis-author">Al Amine Al.</div>
+      <div class="avis-date">Mars 2025</div>
     </div>
+
     <div class="avis-card">
       <div class="avis-quote">"</div>
       <div class="stars">★★★★★</div>
-      <p class="avis-text">Le chauffeur s'est adapté aux problèmes de santé que nous avions et nous avons beaucoup apprécié. C'est difficile de trouver des personnes humaines et à l'écoute de nos jours. Nous recommandons Yang Chauffeur.</p>
-      <div class="avis-author">Justine O.</div>
+      <p class="avis-text">Excellent trajet ! Je recommande fortement, à l'écoute, serviable. Je referai appel à ces services sans hésiter !</p>
+      <div class="avis-author">Nasser M.</div>
+      <div class="avis-date">Avril 2025</div>
     </div>
+
     <div class="avis-card">
       <div class="avis-quote">"</div>
       <div class="stars">★★★★★</div>
-      <p class="avis-text">Un service haut de gamme au juste prix ! Un chauffeur ponctuel, organisé, respectueux et très professionnel. Nous vous le recommandons à 1000%.</p>
-      <div class="avis-author">Anouar A.</div>
+      <p class="avis-text">Nous avons fait appel à ses services pour notre mariage, et tout était absolument parfait du début à la fin. Véhicule de société impeccable, d'une propreté irréprochable.</p>
+      <div class="avis-author">Umit A.</div>
+      <div class="avis-date">Avril 2025</div>
     </div>
+
     <div class="avis-card">
       <div class="avis-quote">"</div>
       <div class="stars">★★★★★</div>
-      <p class="avis-text">Réservation d'un van pour arrivée à Roissy pour 5 personnes et de nombreuses valises. Monsieur Yang a été très arrangeant et très sympathique. Très bon accueil au téléphone.</p>
-      <div class="avis-author">Michele L.</div>
+      <p class="avis-text">Excellent chauffeur ! Ponctuel, très professionnel et agréable. Le van était impeccable, confortable et parfaitement adapté au trajet. Conduite souple et sécurisante, avec un vrai sens du service.</p>
+      <div class="avis-author">Maxime M.</div>
+      <div class="avis-date">Avril 2025</div>
     </div>
+
     <div class="avis-card">
       <div class="avis-quote">"</div>
       <div class="stars">★★★★★</div>
-      <p class="avis-text">Monsieur Yang a emmené notre fils tous les jours au collège suite à une fracture de la jambe. D'une extrême ponctualité et d'un sérieux sans faille. Discret et à l'écoute, je le recommande les yeux fermés.</p>
-      <div class="avis-author">Fred G.</div>
+      <p class="avis-text">Chauffeur sérieux et accueillant, ponctuel. Une voiture propre avec une décoration intérieure incroyable. Je recommande fortement.</p>
+      <div class="avis-author">Yanis B.</div>
+      <div class="avis-date">Avril 2025</div>
     </div>
-    <div class="avis-card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:rgba(201,169,110,0.04);">
-      <div style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; color:var(--gold); margin-bottom:0.5rem;">4.8</div>
-      <div class="stars" style="font-size:1rem; letter-spacing:0.2em;">★★★★★</div>
-      <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.8rem; letter-spacing:0.1em; text-transform:uppercase;">Note Google</div>
-      <a href="tel:0669029438" class="btn-primary" style="margin-top:1.5rem; font-size:0.65rem;">Réserver maintenant</a>
+
+    <div class="avis-card avis-card--featured">
+      <div class="avis-score">5.0</div>
+      <div class="stars" style="font-size:1.1rem; letter-spacing:0.2em;">★★★★★</div>
+      <div class="avis-score-label">Note Google</div>
+      <p class="avis-text" style="margin-top:1rem; font-size:0.8rem;">Professionnel, ponctuel et très courtois. Le véhicule est toujours propre et bien entretenu, et la conduite est à la fois fluide et rassurante. Une prestation haut de gamme.</p>
+      <div class="avis-author">Kimberley M.</div>
+      <a href="#reservation" class="btn-primary" style="margin-top:1.5rem; font-size:0.65rem; display:inline-flex;">Réserver maintenant</a>
     </div>
+
   </div>
 </section>
 
@@ -282,124 +295,120 @@
   <div class="reservation-wrap">
     <div class="res-info">
       <span class="section-label">Contact & Réservation</span>
-      <h2>Votre voyage,<br><em>planifié avec soin</em></h2>
-      <p>Remplissez le formulaire ou contactez-moi directement. Une confirmation écrite (SMS ou email) vous sera envoyée dans les plus brefs délais.</p>
+      <h2>Votre trajet,<br><em>organisé en 2 minutes</em></h2>
+      <p>Remplissez le formulaire ou contactez-nous directement. Devis gratuit et confirmation rapide par WhatsApp ou email.</p>
       <div class="contact-item">
         <div class="contact-icon">📞</div>
         <div>
           <div class="ci-label">Téléphone & WhatsApp</div>
-          <div class="ci-val"><a href="tel:0669029438">06 69 02 94 38</a></div>
+          <div class="ci-val"><a href="tel:+33XXXXXXXXX">+33 X XX XX XX XX</a></div>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">🕐</div>
         <div>
           <div class="ci-label">Disponibilité</div>
-          <div class="ci-val">7 jours sur 7</div>
+          <div class="ci-val">24h/24 — 7j/7</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="ci-label">Base</div>
+          <div class="ci-val">Vigneux-sur-Seine — Essonne (91)</div>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">✈️</div>
         <div>
-          <div class="ci-label">Zone de service</div>
-          <div class="ci-val">Paris, CDG, Orly & Île-de-France</div>
+          <div class="ci-label">Aéroports desservis</div>
+          <div class="ci-val">CDG · Orly · Beauvais</div>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">✉️</div>
         <div>
           <div class="ci-label">Confirmation</div>
-          <div class="ci-val">SMS ou email avec les détails</div>
+          <div class="ci-val">Devis gratuit par WhatsApp</div>
         </div>
       </div>
     </div>
     <div class="form-wrap">
       <h3 class="form-title">Demande de réservation</h3>
-      <p class="form-sub">Confirmation écrite garantie sous 24h</p>
+      <p class="form-sub">Réponse garantie sous 1h</p>
       <div id="formContent">
         <div class="form-row">
           <div class="form-group">
-            <label>Prénom</label>
-            <input type="text" id="prenom" placeholder="Marie" required>
+            <label>Prénom *</label>
+            <input type="text" id="prenom" placeholder="Mohamed" required>
           </div>
           <div class="form-group">
-            <label>Nom</label>
+            <label>Nom *</label>
             <input type="text" id="nom" placeholder="Dupont" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Téléphone</label>
+            <label>Téléphone *</label>
             <input type="tel" id="tel" placeholder="06 XX XX XX XX" required>
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="email" id="email" placeholder="marie@email.com">
+            <input type="email" id="email" placeholder="email@exemple.com">
           </div>
         </div>
         <div class="form-group">
-          <label>Type de prestation</label>
+          <label>Type de prestation *</label>
           <select id="service" required>
             <option value="">— Sélectionner —</option>
-            <option>Transfert vers CDG (Van jusqu'à 7 pers.)</option>
-            <option>Transfert vers CDG (Berline jusqu'à 4 pers.)</option>
-            <option>Transfert vers Orly (Van jusqu'à 7 pers.)</option>
-            <option>Transfert vers Orly (Berline jusqu'à 4 pers.)</option>
+            <option>Transfert aéroport (CDG / Orly / Beauvais)</option>
+            <option>Transfert gare (TGV / RER / Eurostar)</option>
             <option>Mariage / Cérémonie</option>
-            <option>Transport d'enfants</option>
-            <option>Services entreprises</option>
-            <option>Mise à disposition journée</option>
-            <option>Circuit guide lusophone</option>
-            <option>Circuit guide anglophone</option>
-            <option>Visite guidée / privée</option>
-            <option>Événement spécial</option>
+            <option>Séminaire / Événement entreprise</option>
+            <option>Soirée / Événement privé</option>
+            <option>Mise à disposition avec chauffeur</option>
+            <option>Navette groupe (jusqu'à 7 personnes)</option>
+            <option>Trajet longue distance</option>
+            <option>Trajet professionnel ou personnel</option>
             <option>Autre</option>
           </select>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Date</label>
-            <input type="date" id="date" required min="">
+            <label>Date *</label>
+            <input type="date" id="date" required>
           </div>
           <div class="form-group">
-            <label>Heure</label>
+            <label>Heure *</label>
             <input type="time" id="heure" required>
           </div>
         </div>
         <div class="form-group">
-          <label>Adresse de prise en charge</label>
-          <input type="text" id="depart" placeholder="Adresse de départ" required>
+          <label>Adresse de départ *</label>
+          <input type="text" id="depart" placeholder="Adresse de prise en charge" required>
         </div>
         <div class="form-group">
-          <label>Destination</label>
+          <label>Destination *</label>
           <input type="text" id="arrivee" placeholder="Adresse d'arrivée" required>
         </div>
         <div class="form-group">
           <label>Informations complémentaires</label>
-          <textarea id="message" placeholder="Nombre de passagers, bagages, sièges enfants, vol…"></textarea>
+          <textarea id="message" placeholder="Nombre de passagers, bagages, numéro de vol…"></textarea>
         </div>
         <div class="form-notice">
-          <strong>✓ Confirmation garantie</strong> — Après soumission, vous recevrez un SMS et/ou email récapitulatif avec tous les détails de votre course.
+          <strong>✓ Devis gratuit</strong> — Vous recevrez une confirmation et le prix de votre course par WhatsApp dans l'heure.
         </div>
-        <label class="rgpd-check">
-          <input type="checkbox" required>
-          <span>
-            J'accepte que mes données soient utilisées pour le traitement de ma demande
-            (<a href="confidentialite.html">en savoir plus</a>)
-          </span>
-        </label>
         <button class="btn-submit" onclick="submitForm()">Envoyer la demande</button>
-        <a href="https://wa.me/33669029438" target="_blank" class="btn-whatsapp">
+        <a href="https://wa.me/33XXXXXXXXX" target="_blank" class="btn-wa-form">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          Réserver via WhatsApp
+          Devis direct sur WhatsApp
         </a>
       </div>
       <div class="form-success" id="formSuccess">
         <div class="success-icon">✨</div>
         <h3>Demande envoyée !</h3>
-        <p>Merci <strong id="successName"></strong>. Votre demande a bien été reçue.<br>
-        Une confirmation écrite (SMS et/ou email) avec tous les détails de votre course vous sera envoyée dans les plus brefs délais.<br><br>
-        Pour toute urgence : <a href="tel:0669029438" style="color:var(--gold);">06 69 02 94 38</a></p>
+        <p>Merci <strong id="successName"></strong>, votre demande a bien été reçue.<br>Vous serez contacté dans l'heure par WhatsApp ou email.<br><br>
+          Urgence : <a href="tel:+33XXXXXXXXX" style="color:var(--violet);">+33 X XX XX XX XX</a></p>
       </div>
     </div>
   </div>
@@ -409,57 +418,52 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="logo-footer">Yang <em>Chauffeur</em></span>
-      <p>Service de chauffeur privé de prestige à Paris et en Île-de-France. Disponible 7j/7 pour tous vos déplacements, avec le souci constant de votre confort et de votre ponctualité.</p>
+      <span class="logo-footer">ATS <em>VTC</em></span>
+      <p>Agence de chauffeurs privés basée à Vigneux-sur-Seine (91). Transport premium en Essonne et Île-de-France, disponible 24h/24 et 7j/7.</p>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
       <ul>
-        <li>Transferts CDG & Orly</li>
+        <li>Transferts CDG · Orly · Beauvais</li>
+        <li>Transferts gares</li>
         <li>Mariages & Événements</li>
-        <li>Transport d'enfants</li>
-        <li>Services entreprises</li>
-        <li>Circuits sur mesure</li>
+        <li>Séminaires entreprises</li>
+        <li>Longue distance</li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Langues</h4>
+      <h4>Zone de service</h4>
       <ul>
-        <li>Français</li>
-        <li>Guide anglophone 🇬🇧</li>
-        <li>Guide lusophone 🇵🇹</li>
+        <li>Essonne (91)</li>
+        <li>Île-de-France</li>
+        <li>Toute la France</li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="tel:0669029438">06 69 02 94 38</a></li>
-        <li>Disponible 7j/7</li>
-        <li><a href="https://wa.me/33669029438" target="_blank">WhatsApp</a></li>
-        <li>Paris & Île-de-France</li>
+        <li><a href="tel:+33XXXXXXXXX">+33 X XX XX XX XX</a></li>
+        <li>Disponible 24h/24 — 7j/7</li>
+        <li><a href="https://wa.me/33XXXXXXXXX" target="_blank">WhatsApp</a></li>
+        <li>Vigneux-sur-Seine, 91</li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Yang Chauffeur — Tous droits réservés</span>
-    <span>
-      <a href="mentions-legales.html">Mentions légales</a> ·
-      <a href="confidentialite.html">Confidentialité</a> ·
-      Site réalisé par Azmat Dev
-    </span>
+    <span>© 2025 Agence ATS VTC — Tous droits réservés</span>
+    <span>Vigneux-sur-Seine · Essonne · Île-de-France</span>
   </div>
 </footer>
 
 <!-- FLOATING BUTTONS -->
-<div class="float-phone">
-  <a href="https://wa.me/33669029438" target="_blank" class="float-btn float-wa" title="WhatsApp">
+<div class="float-btns">
+  <a href="https://wa.me/33XXXXXXXXX" target="_blank" class="float-btn float-wa" title="WhatsApp">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </a>
-  <a href="tel:0669029438" class="float-btn float-call" title="Appeler">📞</a>
+  <a href="tel:+33XXXXXXXXX" class="float-btn float-call" title="Appeler">📞</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="js/script.js"></script>
-
 </body>
 </html>
