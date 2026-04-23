@@ -312,6 +312,16 @@ h1 em { font-style: italic; color: var(--violet-light); }
 }
 .service-card p { font-size: 0.78rem; line-height: 1.7; color: var(--text-dim); }
 
+.rgpd-check {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.rgpd-check a {
+    color: var(--gold);
+}
+
 /* ── FLEET ── */
 #fleet {
     position: relative; z-index: 1;
