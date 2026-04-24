@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         /* WhatsApp → numéro ATS */
         setTimeout(() => {
-            window.open(`https://wa.me/33XXXXXXXXX?text=${encodeURIComponent(texte)}`, '_blank');
+            window.open(`https://wa.me/33766132171?text=${encodeURIComponent(texte)}`, '_blank');
         }, 300);
 
         /* EmailJS */
