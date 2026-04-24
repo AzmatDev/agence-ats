@@ -1,3 +1,4 @@
+<?php require_once 'includes/check.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,12 +14,12 @@
 
 <!-- NAV -->
 <nav>
-    <a href="index.html#hero" class="nav-logo">Yang <span>Chauffeur</span></a>
+    <a href="index.php#hero" class="nav-logo">Yang <span>Chauffeur</span></a>
     <ul class="nav-links">
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#fleet">Véhicules</a></li>
-        <li><a href="index.html#avis">Avis</a></li>
-        <li><a href="index.html#reservation">Contact</a></li>
+        <li><a href="index.php#services">Services</a></li>
+        <li><a href="index.php#fleet">Véhicules</a></li>
+        <li><a href="index.php#avis">Avis</a></li>
+        <li><a href="index.php#reservation">Contact</a></li>
     </ul>
     <a href="tel:0669029438" class="nav-cta">Réserver</a>
 </nav>
@@ -95,7 +96,7 @@
     <div class="footer-bottom">
         <span>© 2025 Yang Chauffeur — Tous droits réservés</span>
         <span>
-      <a href="mentions-legales.html">Mentions légales</a> ·
+      <a href="mentions-legales.php">Mentions légales</a> ·
       <a href="confidentialite.html">Confidentialité</a>
     </span>
     </div>

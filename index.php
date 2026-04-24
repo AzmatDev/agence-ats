@@ -1,3 +1,4 @@
+<?php require_once 'includes/check.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -389,7 +390,7 @@
           <input type="checkbox" required>
           <span>
             J'accepte que mes données soient utilisées pour le traitement de ma demande
-            (<a href="confidentialite.html">en savoir plus</a>)
+            (<a href="confidentialite.php">en savoir plus</a>)
           </span>
         </label>
         <button class="btn-submit" onclick="submitForm()">Envoyer la demande</button>
