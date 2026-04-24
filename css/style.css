@@ -134,7 +134,7 @@ nav.scrolled { padding: 0.8rem 3rem; background: rgba(6,6,8,0.97); }
 }
 .hero-eyebrow {
     font-size: 0.65rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1rem;
+    color: #ffffff; margin-bottom: 1rem;
     animation: fadeUp 1s ease 0.4s both;
 }
 h1 {
@@ -319,7 +319,7 @@ h1 em { font-style: italic; color: var(--violet-light); }
 }
 
 .rgpd-check a {
-    color: var(--gold);
+    color: var(--violet-light);
 }
 
 /* ── FLEET ── */
