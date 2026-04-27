@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 flashField(select);
             }
             const textarea = document.getElementById('message');
-            if (textarea && card.dataset.message && textarea.value.trim() === '') {
+            if (textarea && card.dataset.message) {
                 textarea.value = card.dataset.message;
                 flashField(textarea);
             }
