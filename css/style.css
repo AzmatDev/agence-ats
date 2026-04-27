@@ -608,7 +608,14 @@ footer {
     #about { padding: 5rem 1.5rem; }
     .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .about-img-col { order: -1; }
-    .about-img-frame { aspect-ratio: 16/9; }
+    /* van_2 portrait → on fixe la hauteur et on centre sur le van */
+    .about-img-frame {
+        aspect-ratio: unset;
+        height: 320px;
+    }
+    .about-img-frame img {
+        object-position: center 65%;
+    }
     .about-img-frame::before, .about-img-frame::after { display: none; }
     .services-grid { grid-template-columns: 1fr 1fr; }
     .fleet-grid { grid-template-columns: 1fr; }
@@ -616,21 +623,63 @@ footer {
     .fleet-side { flex-direction: row; }
     .fleet-thumb { flex: 1; }
     .fleet-thumb img { min-height: 160px; }
-    .avis-grid { grid-template-columns: 1fr 1fr; }
+    /* Avis : 1 colonne sur tablette, pas de grid-column tricks */
+    .avis-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: unset;
+    }
+    .avis-grid .avis-card:nth-child(4) { grid-column: unset; }
+    .avis-grid .avis-card:nth-child(5) { grid-column: unset; }
+    .avis-grid .avis-card--featured {
+        grid-column: 1 / -1;
+        grid-row: unset;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        gap: 1.5rem;
+        text-align: left;
+        padding: 1.5rem 2rem;
+    }
+    .avis-card--featured .avis-text { display: none; }
     .reservation-wrap { grid-template-columns: 1fr; gap: 3rem; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     #services, #fleet, #avis, #reservation, footer { padding: 5rem 1.5rem; }
 }
+
 @media (max-width: 600px) {
-    h1 { font-size: 2.6rem; }
-    .hero-stats { gap: 1.2rem; }
+    h1 { font-size: 2.2rem; }
+    .hero-stats { gap: 0.8rem; }
+    .hstat-num { font-size: 1.5rem; }
+    .hstat-divider { height: 24px; }
+    .hero-badge { font-size: 0.55rem; padding: 0.35rem 0.8rem; }
     .services-grid { grid-template-columns: 1fr; }
+    /* About image portrait sur mobile : hauteur fixe centrée sur le van */
+    .about-img-frame {
+        height: 260px;
+    }
+    .about-img-frame img {
+        object-position: center 70%;
+    }
+    .about-stats { flex-direction: column; gap: 1.2rem; }
+    /* Fleet */
     .fleet-side { flex-direction: column; }
-    .fleet-thumb img { min-height: 200px; }
-    .avis-grid { grid-template-columns: 1fr; }
+    .fleet-thumb img { min-height: 180px; }
+    .fleet-big-card { min-height: 240px; }
+    /* Avis : tout en 1 colonne */
+    .avis-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .avis-grid .avis-card--featured {
+        grid-column: 1;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    /* Formulaire */
     .form-row { grid-template-columns: 1fr; }
+    /* Footer */
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; text-align: center; }
-    .about-stats { flex-direction: column; gap: 1.5rem; }
-    #services, #fleet, #avis, #reservation, footer { padding: 3.5rem 1.2rem; }
+    #services, #fleet, #avis, #reservation, footer { padding: 3rem 1.2rem; }
 }
